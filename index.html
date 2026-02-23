@@ -1,111 +1,104 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     
-    <!-- AQUI É ONDE O CSS É CARREGADO -->
-     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <div class="viewport">
+    <div class="phone">
 
-   <!-- TELA 1 — INÍCIO -->
-<section id="tela-inicio" class="tela ativa tela-personalizada">
-    
-    <img src="img/borda-topo.svg" class="borda-topo" alt="">
+      <!-- TELA 1 — INÍCIO -->
+      <section id="tela-inicio" class="tela ativa tela-personalizada">
+        <img src="img/borda-topo.svg" class="borda-topo" alt="">
 
-    <div class="conteudo-inicio">
-        <img src="img/logo-desenha-design.svg" class="logo" alt="Desenha Design">
+        <div class="conteudo-inicio">
+          <img src="img/logo-desenha-design.svg" class="logo" alt="Desenha Design">
+          <button class="botao-comecar" onclick="irPara('tela-instrucoes')">Começar</button>
+        </div>
 
-        <button class="botao-comecar" onclick="irPara('tela-instrucoes')">
-            Começar
-        </button>
-    </div>
+        <img src="img/borda-bottom.svg" class="borda-bottom" alt="">
+      </section>
 
-    <img src="img/borda-bottom.svg" class="borda-bottom" alt="">
-
-</section> <!-- FECHA AQUI CORRETAMENTE -->
-
-
-<!-- TELA 2 — INSTRUÇÕES -->
-<section id="tela-instrucoes" class="tela tela-personalizada-instrucoes">
-
-    <div class="conteudo-instrucoes">
-
-        <div class="card-instrucoes">
+      <!-- TELA 2 — INSTRUÇÕES -->
+      <section id="tela-instrucoes" class="tela tela-personalizada-instrucoes">
+        <div class="conteudo-instrucoes">
+          <div class="card-instrucoes">
             <p>Escolha a quantidade de equipes e prepare-se para começar.</p>
             <p>Na próxima tela, role o dado para descobrir a categoria que seu parceiro deverá desenhar.</p>
             <p>Antes de iniciar a rodada, lembre-se de ativar o cronômetro para que o tempo comece a contar.</p>
+          </div>
+
+          <button class="botao-iniciar" onclick="irPara('tela-equipes')">Iniciar</button>
         </div>
 
-        <button class="botao-iniciar" onclick="irPara('tela-equipes')">
-            Iniciar
-        </button>
+        <img src="img/borda-tela2.svg" class="borda-bottom" alt="">
+      </section>
 
-    </div>
-
-    <img src="img/borda-tela2.svg" class="borda-bottom" alt="">
-
-</section> <!-- FECHA AQUI CORRETAMENTE -->
-</section>
-
-    <!-- TELA  — ESCOLHER EQUIPES -->
-    <section id="tela-equipes" class="tela">
+      <!-- TELA 3 — ESCOLHER EQUIPES -->
+      <section id="tela-equipes" class="tela tela-padrao">
         <div class="container">
-            <h1 class="titulo">Quantas equipes?</h1>
+          <h1 class="titulo">Quantas equipes?</h1>
 
-            <div class="botoes-equipes">
-                <button class="botao" onclick="selecionarEquipes(2)">2 equipes</button>
-                <button class="botao" onclick="selecionarEquipes(3)">3 equipes</button>
-                <button class="botao" onclick="selecionarEquipes(4)">4 equipes</button>
-            </div>
+          <div class="botoes-equipes">
+            <button class="botao" onclick="selecionarEquipes(2)">2 equipes</button>
+            <button class="botao" onclick="selecionarEquipes(3)">3 equipes</button>
+            <button class="botao" onclick="selecionarEquipes(4)">4 equipes</button>
+          </div>
 
-            <button class="voltar" onclick="irPara('tela-inicio')">Voltar</button>
+          <button class="voltar" onclick="irPara('tela-inicio')">Voltar</button>
         </div>
-    </section>
 
-  <!-- TELA 3 — DADO + CATEGORIA -->
-<section id="tela-dado" class="tela">
-    <div class="container">
+        <img src="img/borda-tela3.svg" class="borda-bottom" alt="">
+      </section>
 
-        <h1 class="titulo">Rodada</h1>
+      <!-- TELA 4 — DADO + CATEGORIA -->
+      <section id="tela-dado" class="tela tela-padrao">
+        <div class="container">
+          <h1 class="titulo">Rodada <span id="numero-rodada">1</span></h1>
 
-        <p class="info-equipes">
+          <p class="info-equipes">
             Equipes jogando: <strong><span id="qtd-equipes">-</span></strong>
-        </p>
+          </p>
 
-        <div class="painel-dado">
+          <div class="painel-dado">
             <p class="label">Dado</p>
             <div id="resultado-dado" class="caixa-info">🎲</div>
 
             <p class="label">Categoria</p>
             <div id="resultado-categoria" class="caixa-info">?</div>
+          </div>
+
+          <button class="botao" onclick="rolarDado()">Rolar dado</button>
+          <button class="relogio" onclick="iniciarTimer()">Iniciar tempo</button>
+          <button class="voltar" onclick="irPara('tela-equipes')">Voltar</button>
         </div>
+      </section>
 
-        <button class="botao" onclick="rolarDado()">Rolar dado</button>
-        <button class="relogio" onclick="iniciarTimer()">Iniciar tempo</button>
-        <button class="voltar" onclick="irPara('tela-equipes')">Voltar</button>
-    </div>
-</section>
+      <!-- TELA 5 — TIMER -->
+      <section id="tela-timer" class="tela tela-padrao">
+        <div class="container">
+          <h1 class="titulo">Tempo</h1>
 
-<!-- TELA 4 — TIMER -->
-<section id="tela-timer" class="tela">
-    <div class="container">
+          <div id="contador" class="timer">90</div>
 
-        <h1 class="titulo">Tempo</h1>
+          <!-- aparece só quando acabar -->
+          <button id="btn-proxima-rodada" class="botao" onclick="proximaRodada()" style="display:none;">
+            Próxima rodada
+          </button>
 
-        <div id="contador" class="timer">
-            90
+          <button class="voltar" onclick="irPara('tela-dado')">Voltar</button>
         </div>
-
-        <button class="botao voltar" onclick="irPara('tela-dado')">Voltar</button>
+      </section>
 
     </div>
-</section>
+  </div>
 
- <!-- carrega o JavaScript -->
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
